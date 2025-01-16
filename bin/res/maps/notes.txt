@@ -1,0 +1,37 @@
+/*
+ * Tile numbering format
+ *	+ place all tile maps under /res/tiles directory 
+ *	+ tile images must be named in the format "%03d.png". (i.e 000.png, 001.png, etc..)
+ *	+ supports 200 tiles. (for ranges 200-399 .. 200 is substracted
+ *		to get the actual tileID... and so on.)
+ * 	+ if a tile image corresponding to an ID is not found, then a null tile will be placed
+ *	+ tiles 0, 200, 400, 600 are assumed to be blank tiles, and hence
+ *		tile filenames start from 001.png .. upto 199.png
+ */
+
+0-199	:	background tiles (doesn't collide with any creature)
+200-399	:	foreground tiles (collide with both light and dark creatures)
+400-599	:	tiles collide with light creatures only
+600-799 :	tiles collide with dark creatures only 
+
+800-849	:	player spawn point (only 1 types as of now ... but extendible)
+880	:	objective tile 
+900-999 :	other NPCs (each id belongs to a different NPC type)
+
+composite values:
+	values such as 900#250 are allowed, to specify that, at a given coordinate
+		1) spawn an NPC with id 900
+		2) set tile to a background tile with id 250
+	
+	also values such as 900#901#902 ... are allowed to specify that at the given coord
+		spawn multiple NPCs
+
+
+NPC ids
+900: duke
+901: duke prime
+902: turret facing left
+903: turret facing right
+904: metroid(move side ways)
+905: metroid (move updown)
+906: duke_badass(boss)
